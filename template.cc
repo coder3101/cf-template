@@ -20,12 +20,21 @@
   printf("Watched %s : ", key);                                \
   for (auto e : val) printf(" %s", std::to_string(e).c_str()); \
   printf("\n");
+#define WATCH_MAP(map)                                    \
+  printf("Watching Map\n");                               \
+  for (auto e : map)                                      \
+    printf("%s -> %s\n", std::to_string(e.first).c_str(), \
+           std::to_string(e.second).c_str());             \
+  printf("\n");
 #else
 #define WATCH(key, val) \
   do {                  \
   } while (false);
 #define WATCH_CONTAINER(key, val) \
   do {                            \
+  } while (false);
+#define WATCH_MAP(map) \
+  do {                 \
   } while (false);
 #endif
 
