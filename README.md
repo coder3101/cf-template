@@ -60,6 +60,21 @@ The template consists of a macro named `WATCH` and `WATCH_CONTAINER`. It is a in
   ```
 
   The above code when executed produced `Container is 1 4 6 9` assuming the `doSomething` function does nothing to container. Same as `WATCH` it will produce nothing if ran on codeforces judge.
+  
+  - `WATCH_MAP(map)` This is same as `WATCH` except that is can be used to watch the values of map such as std::map, std::unordered_map etc..
+
+  ```cpp
+  // ... Suppose main is using the template
+  int main(){
+      std::map<int,int> a;
+      a[12] = 24;
+      a[45] = 45;
+      WATCH_MAP(a);
+      return 0;
+  }
+  ```
+
+  The above code when executed produced `Watched 12 -> 24 45 -> 45` Same as `WATCH` it will produce nothing if ran on codeforces judge.
 
 
 
