@@ -1,8 +1,6 @@
-  /* 
-   *
-   * This code was written by snapdragon3101
-   *
-   */
+/* 
+ * This code was written by snapdragon3101
+ */
 
   // #define FAST_EXECUTION
   // #define INTERACTIVE_MODE
@@ -17,6 +15,10 @@
   #include <unordered_set>
   #include <set>
   #include <vector>
+  #include <stack>
+  
+  const long long INF = 9223372036854775807;
+  const long long MOD = 1e9 + 7;
 
   #ifndef ONLINE_JUDGE
   #define WATCH(key, val)                                                        \
@@ -49,20 +51,27 @@
   #pragma comment(linker, "/stack:247474112")
   #endif
 
-  #define ENDL ("\n")
   #define REP(n) for(int t=0; t<n; t++)
   #define FOR(i, n) for (i = 0; i < n; i++)
   #define FFOR(i, j, n) for(i = j; j < n; j++)
   #define FOR_S(i, n, k) for (i = 0; i < n; i += k)
   #define RFOR(i, n) for (i = n - 1; i >= 0; i--)
   #define RFOR_S(i, n, k) for (i = n - 1; i >= 0; i -= k)
-  #define MAX_OF(x, y) x > y ? x : y
-  #define MIN_OF(x, y) x > y ? y : x
+  #define MAX_OF(x, y) ((x > y) ? x : y)
+  #define MIN_OF(x, y) ((x > y) ? y : x)
+  #define MIN_IN(A) *(std::min_element(A.begin(), A.end()));
+  #define MAX_IN(A) *(std::max_element(A.begin(), A.end()));
+  #define MAX_AT(A) (std::max_element(A.begin(), A.end()) - A.begin());
+  #define MIN_AT(A) (std::min_element(A.begin(), A.end()) - A.begin());
+  #define TESTCASE                                                              \
+    int testcase;                                                               \
+    std::cin>>testcase;                                                         \
+    while(testcase--)
+  #define GCD(a,b) std::__gcd(a,b);
+  #define LCM(a,b) (a)*((b)/std::__gcd(a,b));
   #define SORT(A) std::sort(A.begin(), A.end());
   #define RSORT(A) std::sort(A.rbegin(), A.rend());
   #define REVERSE(A) std::reverse(A.begin(), A.end());
-  #define SORT_ONLY(a, b) std::sort(a, b);
-  #define REVERSE_ONLY(a, b) std::reverse(a, b);
   #define ANY(container, result, condition)                                      \
     result = false;                                                              \
     for (const auto &e : container)                                              \
@@ -105,7 +114,7 @@
   #define READ_LONG(var) scanf("%lld", &var)
   #define WRITE_INT(var) printf("%d", var)
   #define WRITE_LONG(var) printf("%lld", var)
-  #define WRITE_STR(var) std::cout << var;
+  #define WRITE_STR(var) std::cout << var
   #define WRITE_VEC_LL(val)                                                      \
     for (auto e : val)                                                           \
       printf("%lld ", e);
@@ -116,24 +125,28 @@
   #define pb push_back
   #define eb emplace_back
 
-const LL INF = 9223372036854775807;
-const LL MOD = 1e9 + 7;
-
-LL power(LL x, ULL y, LL p) {
+  LL power(LL x, ULL y) {
     // returns  x^y % p
     LL res = 1;
-    x = x % p; 
+    x = x % MOD; 
     while (y > 0) {  
         if (y & 1) 
-            res = (res*x) % p;  
+            res = (res*x) % MOD;  
         y = y>>1;
-        x = (x*x) % p;   
+        x = (x*x) % MOD;   
     } 
     return res; 
-}
+ }
+
+ const int N = 1e9;
+
+/*
+ * JUST FOR REMINDER, REP(n) leaks 't' of integer type for index
+ * 
+ */ 
+
 
 int main(){
-	return 0;
-	}
-
-
+    
+    return 0;
+}
