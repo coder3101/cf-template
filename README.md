@@ -116,8 +116,8 @@ These macros contain commonly defined functions such as sorting and reversing an
 | `SORT(a)`              | Sorts a Container in ascending order.                        |
 | `RSORT(a)`             | Sorts a Container in decreasing order.                       |
 | `REVERSE(a)`           | Reverses the elements of a container.                        |
-| `ANY(cn, res, pr)`     | Puts to res, a bool indicating if any element of the container satisfied the predicated pointed by pr. |
-| `ALL(cn, res, pr)`     | Puts to res, a bool indicating if all element of the container satisfied the predicated pointed by pr. |
+| `ANY(c, r, p)`     | Puts to `r`, a bool indicating if any element of the container `c` satisfied the predicated pointed by `p` |
+| `ALL(c, r, p)`     | Puts to `r`, a bool indicating if all element of the container `c` satisfied the predicated pointed by `p`. |
 | `TESTCASE{...}`        | This macro takes reads a value from stdin and repeats everything in its block for that number of time  |
 
 ### Examples
@@ -270,7 +270,7 @@ Finally we have following shorthand notations for primitive types.
 #define VEC(i) std::vector<i>
 #define MAP(a, b) std::map<a, b>
 #define UMAP(a, b) std::unordered_map<a, b>
-#defime SET(a) std::set<a>
+#define SET(a) std::set<a>
 #define USET(a) std::unordered_set<a>
 #define MSET(a) std::multiset<a>
 #define PAIR(a,b) std::pair<a,b>
