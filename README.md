@@ -61,7 +61,7 @@ The template consists of a macro named `WATCH` and `WATCH_CONTAINER`. It is a in
 
   The above code when executed produced `Container is 1 4 6 9` assuming the `doSomething` function does nothing to container. Same as `WATCH` it will produce nothing if ran on codeforces judge.
   
-  - `WATCH_MAP(map)` This is same as `WATCH` except that is can be used to watch the values of map such as std::map, std::unordered_map etc..
+- `WATCH_MAP(map)` This is same as `WATCH` except that is can be used to watch the values of map such as std::map, std::unordered_map etc..
 
   ```cpp
   // ... Suppose main is using the template
@@ -145,7 +145,7 @@ These macros contain commonly defined functions such as sorting and reversing an
   // Prints 0 to 49 in new lines
   ```
 
-* `REPEAT_BY`
+* `FOR_S`
 
   ```cpp
   int main(){
@@ -158,7 +158,7 @@ These macros contain commonly defined functions such as sorting and reversing an
   // Prints Table of 2 upto 20.
   ```
 
-- ` REPEAT_REV`
+- ` RFOR`
 
   ```cpp
   int main(){
@@ -171,7 +171,7 @@ These macros contain commonly defined functions such as sorting and reversing an
   // Prints 49 to 0 in new lines
   ```
 
-- `REPEAT_REV_BY`
+- `RFOR_S`
 
   ```cpp
     int main(){
