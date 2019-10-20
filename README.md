@@ -116,8 +116,8 @@ These macros contain commonly defined functions such as sorting and reversing an
 | `SORT(a)`              | Sorts a Container in ascending order.                        |
 | `RSORT(a)`             | Sorts a Container in decreasing order.                       |
 | `REVERSE(a)`           | Reverses the elements of a container.                        |
-| `ANY(c, r, p)`     | Puts to `r`, a bool indicating if any element of the container `c` satisfied the predicated pointed by `p` |
-| `ALL(c, r, p)`     | Puts to `r`, a bool indicating if all element of the container `c` satisfied the predicated pointed by `p`. |
+| `ANY(c, r, p)`     | Puts to `r`, a bool indicating if **any** element of the container `c` satisfied the predicate `p` |
+| `ALL(c, r, p)`     | Puts to `r`, a bool indicating if **all** element of the container `c` satisfied the predicate `p`. |
 | `TESTCASE{...}`        | This macro takes reads a value from stdin and repeats everything in its block for that number of time  |
 
 ### Examples
