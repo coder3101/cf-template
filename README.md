@@ -1,72 +1,81 @@
+
 # Codeforces C++ Template
 
-This is a simple C++ codeforces template which you can use in your submissions. It will help you save time, efforts and will let you focus more on algorithms, than on syntax. Please Note, it has been only tested on **GNU C++17** Compiler. Make sure to use it when submitting the your code. It may work on C++11 also, you can test and report back.
+This is a simple C++ template for Codeforces that you can use in your submissions. It helps save time and effort, allowing you to focus more on algorithms than on syntax.  
+**Note**: This template has been tested only with the **GNU C++17** compiler. Please make sure to use it when submitting your code. It may also work with C++11, but you'll need to test and confirm that yourself.
 
-
+---
 
 ## Getting Started
 
-Simply Open the `template.cc` file and start writing your solution. You can configure your program using following MACROS.
+Simply open the `template.cc` file and start writing your solution. You can configure the program using the following macros:
 
-### Configuration Macro
+---
 
-* `FAST_EXECUTION` When you define this Macro, the Compiler will be forced to optimise the code to `O3` level. By default CF optimises to `O2` Level. This may speed up the execution of your program. To use this option
+### Configuration Macros
 
-```c++
-// uncomment this line at 6
-// #define FAST_EXECUTION
-```
+- **`FAST_EXECUTION`**  
+  Defining this macro forces the compiler to optimize your code at the `O3` level. By default, Codeforces uses `O2` optimization. This may improve execution speed.
 
-* `INTERACTIVE_MODE` Some CF Problems are interactive, they expect your program to interactively produce output. i.e Next input is not provided unless an output is produced. For More info Google it. To make your program behave like Interactive Mode. Simply,
+  To enable this, uncomment the line at line 6:
+  ```cpp
+  // #define FAST_EXECUTION
+  ```
 
-```cpp
-// uncomment this line at 7
-// #define INTERACTIVE_MODE  
-```
+- **`INTERACTIVE_MODE`**  
+  Some Codeforces problems are interactive, meaning the input is only provided after your program produces an output. To enable interactive behavior:
 
+  Uncomment the line at line 7:
+  ```cpp
+  // #define INTERACTIVE_MODE
+  ```
 
+---
 
-Following Macros will help you debug better.
+### Debugging Macros
 
-### WATCH Macro
+#### `WATCH` and `WATCH_CONTAINER`
 
-The template consists of a macro named `WATCH` and `WATCH_CONTAINER`. It is a intelligent macro that **will print always except when running on CF judge** . 
+These intelligent macros print debugging information **only when running locally**, not on the Codeforces judge.
 
-- `WATCH(key, val)` Calling this macro prints a value pointed by `val` and along with some identifier `key` for your readability. `Key` must be a string and `val` can be any value that can be converted to string say float, int, double, bool etc..
+- **`WATCH(key, val)`**  
+  Prints the value pointed to by `val` with an identifier `key` for clarity. `key` must be a string, and `val` can be any printable type (e.g., `int`, `float`, `bool`, etc.).
 
   ```cpp
-  // ... Suppose main is using the template
   int main(){
       int a = 0;
       a = 45;
       a = (a++) + (++a);
-      WATCH("a is : ", a);
+      WATCH("a is: ", a);
       return 0;
   }
   ```
 
-  The above code when ran locally prints `a is : 92` but when ran on codeforces judge, it will not print anything. You can use them instead of print, for debugging.
+  When run locally, this will print:  
+  `a is: 92`  
+  It prints nothing on the Codeforces judge.
 
-- `WATCH_CONTAINER(key, val)` This is same as `WATCH` except that is can be used to watch the value of any container such as vector, array etc..
+- **`WATCH_CONTAINER(key, val)`**  
+  Same as `WATCH`, but designed for containers like `vector`, `array`, etc.
 
   ```cpp
-  // ... Suppose main is using the template
   int main(){
-      std::vector<int> a = {1,4,6,9};
+      std::vector<int> a = {1, 4, 6, 9};
       doSomething(a);
-      WATCH_CONTAINER("Container is : "a);
+      WATCH_CONTAINER("Container is: ", a);
       return 0;
   }
   ```
 
-  The above code when executed produced `Container is 1 4 6 9` assuming the `doSomething` function does nothing to container. Same as `WATCH` it will produce nothing if ran on codeforces judge.
-  
-- `WATCH_MAP(map)` This is same as `WATCH` except that is can be used to watch the values of map such as std::map, std::unordered_map etc..
+  Output (locally):  
+  `Container is: 1 4 6 9`
+
+- **`WATCH_MAP(map)`**  
+  Designed for `std::map`, `std::unordered_map`, etc.
 
   ```cpp
-  // ... Suppose main is using the template
   int main(){
-      std::map<int,int> a;
+      std::map<int, int> a;
       a[12] = 24;
       a[45] = 45;
       WATCH_MAP(a);
@@ -74,190 +83,133 @@ The template consists of a macro named `WATCH` and `WATCH_CONTAINER`. It is a in
   }
   ```
 
-  The above code when executed produced `Watched 12 -> 24 45 -> 45` Same as `WATCH` it will produce nothing if ran on codeforces judge.
+  Output (locally):  
+  `Watched 12 -> 24 45 -> 45`
 
+---
 
+### `iprint` Macro
 
-### iprint Macro
-
-This stands for `intelligent print` (just a fancy name). This macro must be used to print the values you want. The syntax is exactly same as `printf()` just the name is different. When you print using this macro, it will guarantee to flush std-out when `INTERACTIVE_MODE` is defined. Also this is faster than conventional `std::cout`.
+This stands for **intelligent print**. It mimics the behavior of `printf()` but ensures flushing of `stdout` when `INTERACTIVE_MODE` is defined. It's also faster than using `std::cout`.
 
 ```cpp
-// .. suppose main is using the template
 int main(){
     iprint("Hello world\n");
-    iprint("%d",56);
-    iprint("%f is float and %d is int and so on", 2.1, 5);
+    iprint("%d", 56);
+    iprint("%f is float and %d is int", 2.1, 5);
     return 0;
 }
 ```
 
-
+---
 
 ### Helper Macros
 
-These macros contain commonly defined functions such as sorting and reversing and other such functions. Here is a quick look at the operations on such macros
+These macros simplify common operations:
 
-| Name                   | Description                                                  |
-| ---------------------- | ------------------------------------------------------------ |
-| `ENDL`                 | It is just for ending the line. It is faster than `std::endl`. Always prefer this over it. |
-| `REP(n)`          | It runs a `for` loop from 0 to n, where `t` is the loop variable leaked for indexing |
-| `FOR(i,n)`        | It runs a `for` loop from 0 to n, with `i` being the loop variable    |
-| `FFOR(i,j,n)`     | It runs a `for` loop from j to n, with `i` being the loop variable    |
-| `FOR_S(i,n,k)`     | It runs a `for` loop from 0 to n after skipping `k` counts. `i` is the loop variable as usual. |
-| `RFOR(i,n)`      | It runs a `for` loop from `n-1` to 0 (both inclusive).       |
-| `RFOR_S(i,n,k)` | Same as `FOR_S` except that is runs in reverse order.    |
-| `MAX_OF(x,y)`          | Returns maximum of x and y                                   |
-| `MIN_OF(x,y)`          | Returns minimum of x and y                                   |
-| `MIN_AT(arr)`          | Returns first index of minimum element in the container.     |
-| `MAX_AT(arr)`          | Returns first index of maximum element in the container.     |
-| `LCM(a,b)`             | Returns Least Common Multiple of `a` and `b`                 |
-| `GCD(a,b)`             | Returns Highest Common Factor of `a` and `b`                 |
-| `SORT(a)`              | Sorts a Container in ascending order.                        |
-| `RSORT(a)`             | Sorts a Container in decreasing order.                       |
-| `REVERSE(a)`           | Reverses the elements of a container.                        |
-| `ANY(c, r, p)`     | Puts to `r`, a bool indicating if **any** element of the container `c` satisfied the predicate `p` |
-| `ALL(c, r, p)`     | Puts to `r`, a bool indicating if **all** element of the container `c` satisfied the predicate `p`. |
-| `TESTCASE{...}`        | This macro takes reads a value from stdin and repeats everything in its block for that number of time  |
+| Name               | Description                                                                 |
+|--------------------|-----------------------------------------------------------------------------|
+| `ENDL`             | Faster line ending; preferred over `std::endl`                              |
+| `REP(n)`           | Loop from 0 to n with loop variable `t` exposed                            |
+| `FOR(i,n)`         | Loop from 0 to n with loop variable `i`                                     |
+| `FFOR(i,j,n)`      | Loop from `j` to `n` with loop variable `i`                                 |
+| `FOR_S(i,n,k)`     | Loop from 0 to `n`, skipping `k` steps                                      |
+| `RFOR(i,n)`        | Reverse loop from `n-1` to 0                                                |
+| `RFOR_S(i,n,k)`    | Reverse loop with a step of `k`                                             |
+| `MAX_OF(x,y)`      | Returns maximum of x and y                                                  |
+| `MIN_OF(x,y)`      | Returns minimum of x and y                                                  |
+| `MIN_AT(arr)`      | Returns index of the minimum element                                        |
+| `MAX_AT(arr)`      | Returns index of the maximum element                                        |
+| `LCM(a,b)`         | Returns Least Common Multiple                                               |
+| `GCD(a,b)`         | Returns Greatest Common Divisor                                             |
+| `SORT(a)`          | Sorts container in ascending order                                          |
+| `RSORT(a)`         | Sorts container in descending order                                         |
+| `REVERSE(a)`       | Reverses the container                                                      |
+| `ANY(c, r, p)`     | Sets `r` to true if **any** element in `c` satisfies predicate `p`          |
+| `ALL(c, r, p)`     | Sets `r` to true if **all** elements in `c` satisfy predicate `p`           |
+| `TESTCASE{...}`    | Repeats the block based on input number of test cases                       |
+
+---
 
 ### Examples
 
-* `ENDL`
-
+- **`ENDL`**
   ```cpp
-  int main(){
-      iprint(ENDL);
-      return 0;
+  iprint(ENDL); // Prints newline
+  ```
+
+- **`REP`**
+  ```cpp
+  REP(n) {
+      iprint("%d\n", t);
   }
-  // Prints a new line
   ```
 
-* `REP`
-
+- **`FOR_S`**
   ```cpp
-  int main(){
-      int i, n = 50;
-      REP(n){
-          iprint("%d\n",t);
-      }
-      return 0;
+  FOR_S(i, n, 2){
+      iprint("%d\n", i + 1);
   }
-  // Prints 0 to 49 in new lines
   ```
 
-* `FOR_S`
-
+- **`RFOR`**
   ```cpp
-  int main(){
-      int i, n = 20;
-      FOR_S(i, n, 2){
-          iprint("%d\n",i+1);
-      }
-      return 0;
+  RFOR(i, n){
+      iprint("%d\n", i);
   }
-  // Prints Table of 2 upto 20.
   ```
 
-- ` RFOR`
-
+- **`RFOR_S`**
   ```cpp
-  int main(){
-      int i, n = 50;
-      RFOR(i, n){
-          iprint("%d\n",i);
-      }
-      return 0;
+  RFOR_S(i, n, 2){
+      iprint("%d\n", i + 1);
   }
-  // Prints 49 to 0 in new lines
   ```
 
-- `RFOR_S`
-
+- **`MAX_OF`, `MIN_OF`**
   ```cpp
-    int main(){
-        int i, n = 20;
-        RFOR_S(i, n, 2){
-            iprint("%d\n",i+1);
-        }
-        return 0;
-    }
-    // Prints Table of 2 upto 20 in reverse order.
+  int a = MAX_OF(4, 6);
+  float b = MIN_OF(78.5, 89.5);
   ```
-* `MAX_OF` and `MIN_OF`
 
+- **`SORT`, `REVERSE`, `MAX_AT`, `MIN_AT`**
   ```cpp
-  int main(){
-      int a = MAX_OF(4,6);
-      float b = MIN_OF(78.5, 89.5);
-      return 0;
+  std::vector<int> a = {1, 4, 5, 6, 0};
+  SORT(a);
+  assert(MIN_AT(a) == 0);
+  REVERSE(a);
+  assert(MAX_AT(a) == 0);
+  WATCH_CONTAINER("a is: ", a);
+  ```
+
+- **`ANY`**
+  ```cpp
+  bool func(int v) { return v >= 0; }
+  std::vector<int> a = {1, 5, 0, 9, -1};
+  bool result;
+  ANY(a, result, func);
+  iprint("%d", result);
+  ```
+
+- **`ALL`**
+  ```cpp
+  std::vector<int> a = {1, 5, 0, 9, -1};
+  bool result;
+  ALL(a, result, [](int v) {
+     return v >= 0;
+  });
+  ```
+
+- **`TESTCASE`**
+  ```cpp
+  TESTCASE {
+      iprint("Hello world # %d", testcase);
   }
-  // a gets 6 and b gets 78.5
   ```
 
-* `SORT`, `REVERSE`, `MAX_AT` and `MIN_AT`
+---
 
-  ```cpp
-  int main(){
-      std::vector<int> a = {1,4,5,6,0};
-      SORT(a);
-      assert(MIN_AT(a) == 0);
-      // a is now in asceding order
-      REVERSE(a);
-      assert(MAX_AT(a) == 0);
-      // a is now in descending order
-      WATCH_CONTAINER("a is : ", a);
-      return 0;
-  }
-  // Prints 
-  // a is 6 5 4 1 0
-  ```
-
-- `ANY` is used to check if at least one of the elements in the container satisfied the condition.
-
-  ```cpp
-  bool func(int v){
-      return v >= 0;
-  };
-  
-  int main(){
-      std::vector<int> a = {1,5,0,9,-1};
-      bool result;
-      ANY(a, result, func);
-      iprint("%d",result);
-      return 0;
-  }
-  // Checks if any element in the vector is more than 0.
-  ```
-
-- `ALL` checks if all the elements satisfies the condition. It can be a lambda as well or any callable.
-
-  ```cpp
-  int main(){
-      std::vector<int> a = {1,5,0,9,-1};
-      bool result;
-      ALL(a, result, [](int v){
-         return  v >= 0;
-      });
-      return 0;
-  }
-  // Checks if all elements are positive or zero
-  ```
-- `TESTCASE` takes a input from stdin and repeats its block that number of times.
-
-    ```cpp
-    int main(){
-        TESTCASE{
-	   iprint("Hello world # %d",testcase);
-	   // testcase is testcase variable
-        }
-	    return 0;
-    }
-    // Takes input from user and print hello world that many times.
-    ```
-
-### Types Shorthands
-
-Finally we have following shorthand notations for primitive types.
+### Type Shorthands
 
 ```cpp
 #define LL long long
@@ -277,26 +229,32 @@ Finally we have following shorthand notations for primitive types.
 #define PAIRI std::pair<int,int>
 ```
 
-To Create a Vector of pair of int and string types you can write
+To create a vector of `pair<int, string>`:
 
 ```cpp
 VEC(PAIR(I, STR)) a;
 ```
 
-### IO Macros 
-Generally speaking C style scanf and printf are faster than that of C++ `std::cout` and `std::cin`. In competitive programming every milisecond matters. So we have some general Input/Ouput macros for this task that under the hood uses those C API's for reading and writing to stdin and stdout. 
+---
+
+### IO Macros
+
+C-style `scanf` and `printf` are generally faster than `cin`/`cout`, which can be crucial in competitive programming.
 
 ```cpp
-#define READ_INT(n) // reads an int value to n
-#define READ_STR(n) // reads a string to n
-#define READ_LONG(n) // reads a long long value to n
-#define WRITE_INT(n) // writes a int value n to stdout
-#define WRITE_STR(n) // writes a string value to stdout
-#define WRITE_LONG(n) // writes a long long to stdout
-#define WRITE_VEC_I(n) // writes all content of vector of ints space separated to stdout
-#define WRITE_VEC_LL(n) // same as above but with long long
+#define READ_INT(n)       // Reads an int value into n
+#define READ_STR(n)       // Reads a string into n
+#define READ_LONG(n)      // Reads a long long into n
+#define WRITE_INT(n)      // Writes an int value to stdout
+#define WRITE_STR(n)      // Writes a string to stdout
+#define WRITE_LONG(n)     // Writes a long long to stdout
+#define WRITE_VEC_I(n)    // Writes vector<int> contents space-separated
+#define WRITE_VEC_LL(n)   // Writes vector<long long> contents space-separated
 ```
 
-Finally the template wouldn't be complete without these 
-    - `pb` : push_back
-    - `eb` : emplace_back
+---
+
+Finally, these commonly used macros are included:
+
+- `pb` : shorthand for `push_back`
+- `eb` : shorthand for `emplace_back`
